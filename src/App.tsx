@@ -6,12 +6,14 @@ import { Store } from './pages/Store'
 import { About } from './pages/About'
 import { Navbar } from './components/Navbar'
 import './App.css'
+import { ShoppingCartProvider } from './context/ShoppingCartContext'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+    <ShoppingCartProvider>
     <Navbar/>
    <Container className='mb-4'>
     <Routes>
@@ -20,6 +22,7 @@ function App() {
       <Route path='/about' element={<About/>}/>
     </Routes>
    </Container>
+   </ShoppingCartProvider>
    </>
   )
 }

@@ -14,10 +14,12 @@ export function StoreItem({id,title,price,category,image}:StoreItemProps){
     return(
         <>
         <Card className="h-100" key={id}>
-        <Card.Img src={image} variant="top" style={{height:"200px",objectFit:"cover"}}/>
+        <div className="m-2">
+        <Card.Img src={image} variant="top" style={{height:"400px",objectFit:"cover"}}/>
+        </div>
         <Card.Body className="d-flex flex-column ">
             <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-                <span className="fs-2">{title}</span>
+                <span className="fs-3">{title}</span>
                 <span className="ms-2 text-muted">{formatCurrency(price)}</span>
             </Card.Title>
             <div className="mt-auto">
