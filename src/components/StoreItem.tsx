@@ -1,5 +1,6 @@
 import {Card, Button} from "react-bootstrap"
 import { formatCurrency } from "../utilities/formatCurrency"
+import { useShoppingCart } from "../context/ShoppingCartContext"
 type StoreItemProps = {
     id:number,
     title:string,
@@ -10,7 +11,9 @@ type StoreItemProps = {
 
 
 export function StoreItem({id,title,price,category,image}:StoreItemProps){
-    const quantity = 0
+    
+    const {getItemQuantity,increaseQuantity,decreaseQuantity,removeItem} = useShoppingCart()
+    const quantity = getItemQuantity(id)
     return(
         <>
         <Card className="h-100" key={id}>
@@ -25,17 +28,18 @@ export function StoreItem({id,title,price,category,image}:StoreItemProps){
             <div className="mt-auto">
                 {
                     quantity === 0 ? (
-                        <Button className="w-100">Add To Cart</Button>
+                        <Button className="w-100" onClick={()=>increaseQuantity(id)}>Add To Cart</Button>
                     ): (
                         <div className="d-flex flex-column align-items-center" style={{gap:"0.5rem"}}>
                             <div className="d-flex align-items-center justify-content-center" style={{gap:"0.5rem"}}>
-                                <Button>-</Button>
+                                <Button onClick={()=>decreaseQuantity(id)}>-</Button>
                                 <div>
                                     <span className="fs-3 me-1">{quantity}</span>in cart
                                 </div>
-                                <Button>+</Button>
+                                <Button onClick={()=>increaseQuantity(id)}>+</Button>
                             </div>
-                            <Button className="bg-danger" style={{height:"3rem",width:"4.5rem"}}>Remove</Button>
+                            <Button className="bg-danger" style={{height:"3rem",width:"4.5rem"}} onClick={()=>removeItem(id)}>
+                                Remove</Button>
                         </div>
                     )
                 }
