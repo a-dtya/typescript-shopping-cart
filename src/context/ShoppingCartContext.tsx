@@ -1,5 +1,5 @@
 import {createContext, useContext, ReactNode, useState} from "react"
-
+import { ShoppingCart } from "../components/ShoppingCart"
 type CartItem = {
     id: number
     quantity: number
@@ -86,6 +86,7 @@ export function ShoppingCartProvider({children}:ShoppingCartProps){
             cartQuantity
             }}>
             {children}
+            <ShoppingCart cartIsOpen={cartIsOpen}/>
         </ShoppingCartContext.Provider>
     )
 }

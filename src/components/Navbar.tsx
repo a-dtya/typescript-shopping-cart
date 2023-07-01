@@ -1,7 +1,9 @@
 import {Container,Navbar as NavbarBs,Nav,Button } from 'react-bootstrap'
 import {NavLink} from "react-router-dom"
+import { useShoppingCart } from '../context/ShoppingCartContext'
 
 export function Navbar(){
+    const {cartQuantity,openCart}  = useShoppingCart()
     return(
         
             <NavbarBs sticky='top' className='bg-white shadow-sm mb-2'>
@@ -10,8 +12,9 @@ export function Navbar(){
                     <Nav.Link to="/" as={NavLink}>Home</Nav.Link>
                     <Nav.Link to="/store" as={NavLink}>Store</Nav.Link>
                     <Nav.Link to="/about" as={NavLink}>About</Nav.Link>
-                    </Nav>
-                    <Button style={{width:"3em",height:"3rem",position:"relative"}} variant='outline-primary' className="rounded-circle">
+                    </Nav>{
+                        cartQuantity>0 && (
+                    <Button  onClick={openCart} style={{width:"3em",height:"3rem",position:"relative"}} variant='outline-primary' className="rounded-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-garden-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
    <path d="M17.5 17.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"></path>
@@ -20,8 +23,10 @@ export function Navbar(){
 </svg>
 <div className='rounded-circle d-flex justify-content-center align-items-center bg-danger'
 style={{width:"1.5rem", height:"1.5rem", position:"absolute",color:"white",right:"0",bottom:"0",transform:"translate(25%,25%)"}}
->3</div>
+>{cartQuantity}</div>
                     </Button>
+                    )
+}
                 </Container>
             </NavbarBs>
            
