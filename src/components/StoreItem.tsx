@@ -38,7 +38,7 @@ export function StoreItem({id,title,price,category,image}:StoreItemProps){
                                 </div>
                                 <Button onClick={()=>increaseQuantity(id)}>+</Button>
                             </div>
-                            <Button className="bg-danger" style={{height:"3rem",width:"4.5rem"}} onClick={()=>removeItem(id)}>
+                            <Button className="bg-danger" style={{height:"3rem",width:"4.5rem",fontSize:"0.78rem"}} onClick={()=>removeItem(id)}>
                                 Remove</Button>
                         </div>
                     )

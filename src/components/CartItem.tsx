@@ -14,6 +14,7 @@ export function CartItem({id,quantity}:CartItemProps){
         return null
     }
     return(
+        <>
         <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
             <img src={item.image} style={{width:'125px',height:"75px",objectFit:"cover"}}></img>
             <div className="me-auto">
@@ -37,6 +38,8 @@ export function CartItem({id,quantity}:CartItemProps){
                 &times;
             </Button>
         </Stack>
+        
+        </>
 
     )
 }
